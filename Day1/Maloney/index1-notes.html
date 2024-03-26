@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="">
+        <title>document</title>
+    </head>
+    <body>
+       <p>Hello World</p> 
+       <script>
+            console.log("Hello World")
+            // var
+            // let
+            // const
+
+            // difference between let and const
+            // const - immutable 
+
+            // var - not reccomended (discouraged)
+            // var doesn't have block scoping
+            let name = "Matt"
+            console.log(name)
+            name = "Tamsin"
+            console.log(name)
+            name = 2
+            console.log(name)
+
+            //array of colors 
+            const colors = ["red","blue","green"]
+            console.log(colors)
+
+            console.log(colors[2])
+            console.log(colors.length)
+
+            //different way to create an array
+            const colors2 = new Array("red","green")
+            //add to array
+            colors2.push("yellow")
+            console.log(colors2)
+            //remove final element from array
+            //could have used slice but not reccomended
+            console.log(colors2.splice(0,2))
+            //colors.pop() <by default removes the last element
+
+
+            // STRINGS
+            // how does js know it's a string ""
+
+            const myString = "this is a string"
+            const anotherString = 'this is my second string'
+            const famousQuote = 'Valera said "If you ain\'t first, you\'re last"'
+            //ways to put variable into string
+            //create a string that greets someone based on their name
+            // name gets passed into string as variable
+            // ways:
+                //concat -- concatination
+                let greeting = "hello"
+                const name3 = "matt"
+                console.log(greeting + name3)
+                console.log(myString,anotherString, famousQuote)
+
+            let name2 = "Bob"
+            //string interpolation 
+            let stringWithVariable = `Hello ${name2}!`
+            //prompt("what's your name")
+            console.log(stringWithVariable)
+
+            console.log ("Hello " + name2+"!")
+
+
+            // JavaScript objects
+            // want to get away from ooo thinking 
+            const nick = {
+                name: "Nick",
+                foods: ["Pizza","Shrimp","Sandwich"],
+                preferences: [{color: "purple"}, {season: "autumn"}]
+            }
+            console.log(nick)
+
+            // access and log to console nick's array of fravorite foods
+            console.log(nick.foods)
+            // access and log to console nick's favorite season information
+            console.log(nick.preferences[1])
+            // access just the string purple
+            console.log(nick.preferences[0].color)
+
+            //what if we know the value but not the position 
+            //where is the value "shrimp" in the foods array
+            const indexOfShrimp = nick.foods.indexOf("Shrimp")
+            console.log(indexOfShrimp)
+//negative 1 when not found
+            const findSeason = nick.preferences.find(({season}) => season)
+            console.log(findSeason)
+
+            //truthyfalsy
+            console.log(1==1) //true
+            console.log(1===1) //true
+            console.log(1==='1') //false
+            console.log(1=='1') //true
+            // == won't check for type - flexible with types; not many cases for when to use
+            // === cares about type
+
+            let newVariable;
+            console.log(newVariable == null) //true
+            console.log(newVariable === null) //false
+
+            //in javascripts has null and undefined.  
+            //when you haven't assigned a value it is undefined
+            //Double equal is for checking when something is null only -- Every other scenario would be triple
+            // the more equal signs the more strict
+
+            //!== is like saying NOT (strict equal ===)
+            //!= is like saying NOT (loosely equal ==)
+            console.log(1 !== '1') //true
+
+            console.log(1 != '1' ) //false
+
+            console.log(1 === +"1") //true - converts type of string 1 into # 
+            console.log(1 === Number("1")) //true
+
+
+            
+        </script>
+    </body>
+</html>

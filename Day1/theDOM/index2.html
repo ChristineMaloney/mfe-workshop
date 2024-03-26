@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- onclick lower case in js but not react -->
+<body>
+    <p id="para1">This text is from the HTML and the button has not been clicked</p>
+
+    <button class="btn" onclick="handleClick()">Click me!</button>
+    <script>
+        const myPara = document.getElementById("para1")
+        console.log(myPara)
+        //when button gets clicked, log something to the console
+        const handleClick = () => {
+            myPara.innerText = "The button was clicked"
+            console.log("the button was clicked")
+            document.getElementById("btn").setAttribute(disabled)
+        } 
+        //myPara.innerText = "this text comes from JS"
+    </script>
+</body>
+</html>

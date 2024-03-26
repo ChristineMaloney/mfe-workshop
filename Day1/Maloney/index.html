@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        Hello World
+    </p>
+    <script>
+        // const userInput = prompt("Hello how are you?")
+        // console.log(userInput)
+
+        // // if user says they are good, we will log nice response to console 
+        // //if the user sys they are bad, we will log a rude response
+        // // if user says fine, mate then log 'you're british'
+
+        // if(userInput === "good"){
+        //     console.log("yay")
+        // }
+        // else if(userInput === "bad"){
+        //     console.log("yikes")
+        // }
+        // else if(userInput === "fine, mate"){
+        //     console.log("you're british")
+        // } else {
+        //     console.log("idk")
+        // }
+
+        //how many different ways in Javascript to create a function
+        //function declarations
+        //arrow functions (came with ES6)
+        //write a function that takes in paramters (first name and srname)
+        // and returns a string greeting
+
+        function sayHello(firstName, surname) {
+            return (
+                `Hello, ${firstName} ${surname}`
+            )
+        }
+
+        console.log(sayHello("Christine","Maloney"))
+
+        // Functions in java script need a return statement? false. could just console log directly
+
+        // Arrow function
+            // read => as becomes
+            // if you have curly braces you have to have return keyword
+        const sayHello2 = (firstName, surname) => {
+            console.log(`Hello, ${firstName} ${surname}`)
+        }
+
+        sayHello2("Matt", "Thornfield")
+
+        //const helloToMat = sayHello2("Matt, Thornfield")
+
+        //HTML - structure
+        //JS - logic, functionality, events, interactivity
+            // DOM (how the HTML/JS talk to eachother)
+                // how JS comes to know about and response to events based on what user is doing to HTML
+        //CSS - Style
+        
+        //DOM 
+        // Virtual DOM - React
+        
+    </script>
+</body>
+</html>

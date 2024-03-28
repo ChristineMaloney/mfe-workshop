@@ -1,27 +1,75 @@
+import axios, { AxiosResponse } from "axios";
+
 export type PaymentType =
-    {id: number,
-    amount: number,
+    {
+        id: number | null,
+        amount: number,
         country: string,
         currency: string,
         date: string,
         orderId: string,
         taxCode: number,
         taxRate: number,
-        type: string}
+        type: string
+    }
 
-export const getAllPayments : () => PaymentType[] 
-    = () => { return [
-        {id: 101, amount: 160, country: "USA", currency: "USD", date: "2017-01-31", orderId:"21216652", taxCode: 0, taxRate: 0, type: "SALE"},
-        {id: 102, amount: 200, country: "FRA", currency: "EUR", date: "2017-02-01", orderId:"21216653", taxCode: 7, taxRate: 0.21, type: "SALE"},
-        {id: 103, amount: -100, country: "SWE", currency: "EUR", date: "2017-02-01", orderId:"21216654", taxCode: 19, taxRate: 0.25, type: "Refund"},
-        {id: 104, amount: 60, country: "USA", currency: "USD", date: "2017-02-02", orderId:"21216655", taxCode: 0, taxRate: 0, type: "SALE"},
-        {id: 105, amount: 130, country: "USA", currency: "USD", date: "2017-01-31", orderId:"21216656", taxCode: 0, taxRate: 0, type: "SALE"},
-        {id: 106, amount: 230, country: "FRA", currency: "EUR", date: "2017-02-01", orderId:"21216657", taxCode: 7, taxRate: 0.21, type: "SALE"},
-        {id: 107, amount: -30, country: "SWE", currency: "EUR", date: "2017-02-01", orderId:"21216658", taxCode: 19, taxRate: 0.25, type: "Refund"},
-        {id: 108, amount: 90, country: "USA", currency: "USD", date: "2017-02-02", orderId:"21216659", taxCode: 0, taxRate: 0, type: "SALE"},
-        {id: 109, amount: 210, country: "USA", currency: "USD", date: "2017-01-31", orderId:"21216660", taxCode: 0, taxRate: 0, type: "SALE"},
-        {id: 110, amount: 110, country: "FRA", currency: "EUR", date: "2017-02-01", orderId:"21216661", taxCode: 7, taxRate: 0.21, type: "SALE"},
-        {id: 111, amount: -150, country: "SWE", currency: "EUR", date: "2017-02-01", orderId:"21216662", taxCode: 19, taxRate: 0.25, type: "Refund"},
-        {id: 112, amount: 600, country: "USA", currency: "USD", date: "2017-02-02", orderId:"21216663", taxCode: 0, taxRate: 0, type: "SALE"}
-    ]
+let serverUrl: string = "https://payments.multicode.uk";
+
+if (process.env.PRODUCTION_URL) {
+    serverUrl = process.env.PRODUCTION_URL;
 }
+
+export const getPaymentsFromServer = (): void => {
+    console.log("getting paymnts from server");
+    const result: Promise<AxiosResponse<PaymentType[]>> =
+        axios<PaymentType[]>({ method: "GET", url: `${serverUrl}/api/payment`, headers: { 'Accept': 'application/json' } })
+    result.then((response) => {
+        console.log(response)
+        const data: PaymentType[] = response.data;
+    })
+}
+
+//create a function that takes a parameter of a country /payment?country=xxx
+//returns the promise
+
+export const getPaymentsFromServerByCountry = (country: string): Promise<AxiosResponse<PaymentType[]>> =>
+{
+    return axios<PaymentType[]>(
+        { method: "GET", 
+        url: `${serverUrl}/api/payment?country=${country}`, 
+        headers: { 'Accept': 'application/json' } })
+}
+
+//createa a function that gets countries
+
+export const getCountries = (): Promise<AxiosResponse<string[]>> =>
+{
+    return axios<string[]>(
+        { method: "GET", 
+        url: `${serverUrl}/api/country`, 
+        headers: { 'Accept': 'application/json' } })
+}
+
+export const addNewTransaction = (trans : PaymentType)  : Promise<AxiosResponse<PaymentType>> => {
+    return axios({method: "POST", url : `${serverUrl}/api/payment`, 
+    headers: {'Accept': 'application/json', 'Content-Type' : 'application/json'},
+    data: trans}) 
+}
+
+export const getAllPayments: () => PaymentType[]
+    = () => {
+        return [
+            { id: 101, amount: 160, country: "USA", currency: "USD", date: "2017-01-31", orderId: "21216652", taxCode: 0, taxRate: 0, type: "SALE" },
+            { id: 102, amount: 200, country: "FRA", currency: "EUR", date: "2017-02-01", orderId: "21216653", taxCode: 7, taxRate: 0.21, type: "SALE" },
+            { id: 103, amount: -100, country: "SWE", currency: "EUR", date: "2017-02-01", orderId: "21216654", taxCode: 19, taxRate: 0.25, type: "Refund" },
+            { id: 104, amount: 60, country: "USA", currency: "USD", date: "2017-02-02", orderId: "21216655", taxCode: 0, taxRate: 0, type: "SALE" },
+            { id: 105, amount: 130, country: "USA", currency: "USD", date: "2017-01-31", orderId: "21216656", taxCode: 0, taxRate: 0, type: "SALE" },
+            { id: 106, amount: 230, country: "FRA", currency: "EUR", date: "2017-02-01", orderId: "21216657", taxCode: 7, taxRate: 0.21, type: "SALE" },
+            { id: 107, amount: -30, country: "SWE", currency: "EUR", date: "2017-02-01", orderId: "21216658", taxCode: 19, taxRate: 0.25, type: "Refund" },
+            { id: 108, amount: 90, country: "USA", currency: "USD", date: "2017-02-02", orderId: "21216659", taxCode: 0, taxRate: 0, type: "SALE" },
+            { id: 109, amount: 210, country: "USA", currency: "USD", date: "2017-01-31", orderId: "21216660", taxCode: 0, taxRate: 0, type: "SALE" },
+            { id: 110, amount: 110, country: "FRA", currency: "EUR", date: "2017-02-01", orderId: "21216661", taxCode: 7, taxRate: 0.21, type: "SALE" },
+            { id: 111, amount: -150, country: "SWE", currency: "EUR", date: "2017-02-01", orderId: "21216662", taxCode: 19, taxRate: 0.25, type: "Refund" },
+            { id: 112, amount: 600, country: "USA", currency: "USD", date: "2017-02-02", orderId: "21216663", taxCode: 0, taxRate: 0, type: "SALE" }
+        ]
+    }

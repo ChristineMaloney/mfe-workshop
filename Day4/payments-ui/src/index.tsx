@@ -8,6 +8,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
+  //Strict mode is causing the console log to render twice
   <React.StrictMode>
     <App />
   </React.StrictMode>

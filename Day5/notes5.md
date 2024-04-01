@@ -31,3 +31,19 @@ add remotecomponents.ds.ts
 
 
 ## valid use of useRef (mount)
+
+
+## MFEs
+
+
+1. allowing you to re-render a child when the parent state changes (want to limit that but would be good for a login/logout)
+- the function the child is going to return is going to be fired when
+-- ideal to start with on 
+- function from the parent is going to be handling state
+
+* in the parent, we are managing the user state 
+
+
+in react-mfes\05\payments-ui
+
+

@@ -8,7 +8,6 @@ const root = ReactDOM.createRoot(el);
 root.render(<Transactions { ...props } />);
 // above is a shortcut of :
 // root.render(<Transactions serverUrl={props.serverUrl} />)
-
 }
 
 export default mount;

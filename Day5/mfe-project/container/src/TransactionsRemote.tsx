@@ -1,13 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import mount from 'payments_list/Transactions';
 
 const TransactionsRemote = () : JSX.Element => {
 
+  const [serverUrl, setServerUrl] = useState<string>("https://payments.multicode.uk");
+  
     const transactions = useRef<HTMLDivElement>(null);
 
     //useEffect to make sure it exists 
     useEffect( () => {
-      mount(transactions.current, {serverUrl : "https://payments.multicode.uk"});
+      mount(transactions.current, {serverUrl : serverUrl});
     }, []);
   
     return (
@@ -17,6 +19,5 @@ const TransactionsRemote = () : JSX.Element => {
       </div>
     );
 }
-
 
 export default TransactionsRemote;

@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
 import mount from 'static_pages/HomePage';
+import { User } from "./App";
+
+type HomePageProps = {user : User, logout: () => void}
 
 
-
-const HomePageRemote = () : JSX.Element => {
+const HomePageRemote = (props: HomePageProps) : JSX.Element => {
 
     const homePage = useRef<HTMLDivElement>(null);
 
